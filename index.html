@@ -7,9 +7,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>PORSCHE</title>
 </head>
+<script>
+    function changeHeaderColor() {
+        console.log(document.documentElement.scrollTop)
+        if (document.documentElement.scrollTop > 100) {
+            document.getElementById('header').classList.add('header')
+            document.getElementById('logo').src = 'logo-secondary.png'
+            var listItems = document.querySelectorAll('.list ul li');
+            for (let i = 0; i < listItems.length; i++) {
+                var listItem = listItems[i];
+                listItem.style.color = 'black'
+            }
+        }
+        else {
+            document.getElementById('header').classList.remove('header')
+            document.getElementById('logo').src = 'logo-primary.png'
+            var listItems = document.querySelectorAll('.list ul li');
+            for (let i = 0; i < listItems.length; i++) {
+                var listItem = listItems[i];
+                listItem.style.color = 'white'
+            }
+        }
+    }
+    window.onscroll = changeHeaderColor
+</script>
 <style>
+    .header {
+        background-color: white;
+        color: black;
+    }
+
     .maincontainer {
         background-image: url(bg2.jpg);
         background-repeat: no-repeat;
@@ -32,18 +64,19 @@
 
     .container {
         font-size: x-large;
-        margin-top: 11rem;
-        margin-left: 11rem;
-        margin-right: 11rem;
         font-family: "manrope";
+        margin-left: 12rem;
+        margin-right: 12rem;
+        display: grid;
+        gap: 4rem;
     }
 
+
     .para {
-        margin-left: 10rem;
-        margin-right: 10rem;
         font-size: x-large;
         display: flex;
         font-family: "manrope";
+        gap: 4em;
     }
 
     .icon {
@@ -65,39 +98,77 @@
         width: 50rem;
         height: 50rem;
     }
+
+    .form {
+        background-color: rgb(211, 210, 210);
+        margin-right: 4rem;
+        margin-left: 4rem;
+        height: 38rem;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+    }
+
+    .btn {
+        border: 1px solid black;
+        background-color: transparent;
+        color: black;
+        cursor: pointer;
+        font-family: "manrope";
+        width: 10rem;
+        font-size: x-large;
+        height: 4rem;
+        margin-top: 2rem;
+    }
+
+    .mapouter {
+        margin-left: 4rem;
+        position: relative;
+        text-align: right;
+        width: auto;
+        height: 400px;
+        margin-right: 4rem;
+        margin-top: 3rem;
+    }
+
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        width: 100%;
+        height: 400px;
+    }
+
+    .gmap_iframe {
+        height: 400px !important;
+    }
 </style>
 
 <body style="margin: 0px;padding: 0px;">
-    <div class="maincontainer">
-        <header style="padding-top: 2em;
-        margin-left: 3em;">
-            <div class="logo1">
-                <a href="#" class="logo" style="align-content: center;">
-                    <img src="logo-primary.png" width="270" class="logo-primary">
-                </a>
-                <div class="list">
-                    <ul style="font-size: 1.3em;
-                    font-family: manrope;
-                    word-spacing: 3em;
-                    padding-right: 3em;">
-                        <li>HOME</li>
-                        <li>ABOUT</li>
-                        <li>SPECS</li>
-                        <li>CONTACT</li>
-                    </ul>
-                </div>
+    <header id="header" style="padding-top: 2em; position: fixed; width: 100%;">
+        <div class="logo1">
+            <a href="#" class="logo" style="align-content: center;">
+                <img id="logo" src="logo-primary.png" width="270" style="margin-left: 3em;">
+            </a>
+            <div class="list">
+                <ul style="font-size: 1.3em;
+                font-family: manrope;
+                word-spacing: 3em;
+                padding-right: 3em;">
+                    <li>HOME</li>
+                    <li>ABOUT</li>
+                    <li>SPECS</li>
+                    <li>CONTACT</li>
+                </ul>
             </div>
-        </header>
-        <p style="   margin-left: 4em;
-        margin-top: 39rem;
-        font-size: 3.8rem;
-        font-family: manrope;
-        color: white;
-        font-weight: 700;">LUXURY CAR PACKED WITH <br>POWERFUL FEATURES</p>
-
+        </div>
+    </header>
+    <div class="maincontainer">
+        <span
+            style=" display: block;margin-left: 4em; padding-top: 39rem; font-size: 3.8rem; font-family: manrope; color: white; font-weight: 700;">LUXURY
+            CAR PACKED WITH <br>POWERFUL FEATURES</span>
     </div>
     <div class="container">
-        <h1 style=font-size: xxx-large; ">ABOUT US</h1>
+        <h1 style="font-size: xxx-large;margin-top: 2em;">ABOUT US</h1>
         <p style=" font-weight: bold;">Lorem ipsum dolor sit amet,
             consectetur adipiscing elit. Aenean fringilla, enim nec
             rhoncus imperdiet, velit sapien suscipit diam, et sagittis augue sapien in tellus. Aliquam fringilla id
@@ -105,58 +176,126 @@
             non pharetra. Donec vitae rhoncus diam. Duis rutrum hendrerit varius. Donec eget sollicitudin lectus, a
             feugiat
             tellus. Aliquam mauris elit, pharetra non tristique non, ullamcorper at lorem. Curabitur viverra elit at
-            diam
-            luctus aliquam..</p>
+            diam luctus aliquam..</p>
+        <div class="para">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fringilla, enim nec rhoncus
+                imperdiet, velit
+                sapien suscipit diam, et sagittis augue sapien in tellus. Aliquam fringilla id lectus non pharetra.
+                Donec
+                vitae rhoncus diam. Duis rutrum hendrerit varius. Donec eget sollicitudin lectus, a feugiat tellus.
+                Aliquam
+                mauris elit, pharetra non tristique non, ullamcorper at lorem. Curabitur viverra elit at diam luctus
+                aliquam. Suspendisse nulla erat, efficitur ut dictum nec, vestibulum sodales quam. Donec sed lacus
+                nec dolor
+                varius maximus sit amet ut nunc. Nunc blandit eros nec enim molestie porttitor. In posuere quam in
+                dui
+                varius luctus. Vestibulum bibendum orci id tristique aliquam. Vivamus tempor, nibh quis sagittis
+                feugiat,
+                ligula lectus tempus</p>
+            <p>ligula, sit amet tincidunt dui risus nec augue.Integer tristique vitae lorem ac cursus. Pellentesque
+                id
+                mattis erat. Duis a malesuada libero. In nec scelerisque ex. Integer lectus orci, ultrices eget
+                metus et,
+                egestas pharetra magna. Nullam sit amet magna a quam pulvinar lacinia. Ut at fringilla ante.
+                Phasellus
+                pharetra molestie porta. Vivamus at ligula nunc. Vivamus mi mauris, pulvinar eget nulla ut, auctor
+                fermentum
+                velit. Nam tincidunt tortor non malesuada sollicitudin. Nam eget est velit. Nulla tempus tellus et
+                tortor
+                suscipit hendrerit. Praesent vitae tellus vitae augue ornare dictum consectetur eget eros. Mauris ut
+                nunc
+                erat. Aenean vel odio vestibulum, porta nisl et, hendrerit turpis.</p>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-evenly;">
+                <img src="icon-model.png" alt class="icon">
+                <img src="icon-engine.png" alt class="icon">
+                <img src="icon-fuel.png" alt class="icon">
+                <img src="icon-road.png" alt class="icon">
+                <img src="icon-seat.png" alt class="icon">
+            </div>
+            <div style="display: flex; justify-content: space-evenly;">
+                <h2 class="style">MODEL</h2>
+                <h2 class="style">ENGINE</h2>
+                <h2 class="style">FUEL TYPE</h2>
+                <h2 class="style">MILEAGE</h2>
+                <h2 class="style">SEATS</h2>
+            </div>
+            <div style="display: flex; justify-content: space-evenly;">
+                <h3 class="text">ZENCAR XS4</h3>
+                <h3 class="text">2100CC</h3>
+                <h3 class="text">HYBRID</h3>
+                <h3 class="text">10 MPL</h3>
+                <h3 class="text">5 SEATER</h3>
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center; width: max-content;">
+            <iframe width="1450" height="515" src="https://www.youtube.com/embed/GXwaQIZJkp8?si=A9MadiF72pWOkKXM"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div style="gap: 10rem;display: flex;">
+            <img src=" interior.jpg " alt="" style=" width: 35rem;">
+            <h1 style="font-family:manrope;font-size: 3.4rem; margin:0px;">INTERIOR
+                <p style="font-family: manrope;font-size: x-large;font-weight: 300;">Lorem ipsum dolor sit amet,
+                    consectetur adipiscingelit. Inutlibero magna. Suspendisse id laoreet ligula, id condimentum
+                    quam. Nulla feugiat velit vitae
+                    viverra lacinia. Nullam felis erat, condimentum gravida iaculis elementum, accumsan et risus.
+                </p>
+                <p style="font-family: manrope;font-size: x-large;font-weight: 300;">Nam accumsan dignissim dolor a
+                    lacinia. Nulla mattis sem nec tincidunt blandit. Aenean eget ante
+                    id sapien porttitor tincidunt</p>
+            </h1>
+        </div>
+        <div style="gap: 10rem;display: flex;">
+            <h1 style="font-family:manrope;font-size: 3.4rem; margin:0px;">EXTERIOR
+                <p style="font-family: manrope;font-size: x-large;font-weight: 300;">Lorem ipsum dolor sit amet,
+                    consectetur adipiscingelit. Inutlibero magna. Suspendisse id laoreet ligula, id condimentum
+                    quam. Nulla feugiat velit vitae
+                    viverra lacinia. Nullam felis erat, condimentum gravida iaculis elementum, accumsan et risus.
+                </p>
+                <p style="font-family: manrope;font-size: x-large;font-weight: 300;">Nam accumsan dignissim dolor a
+                    lacinia. Nulla mattis sem nec tincidunt blandit. Aenean eget ante
+                    id sapien porttitor tincidunt</p>
+            </h1>
+            <img src="exterior.jpg" alt="" width="1100" height="400">
+        </div>
     </div>
-    <div class="para">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fringilla, enim nec rhoncus imperdiet, velit
-            sapien suscipit diam, et sagittis augue sapien in tellus. Aliquam fringilla id lectus non pharetra. Donec
-            vitae rhoncus diam. Duis rutrum hendrerit varius. Donec eget sollicitudin lectus, a feugiat tellus. Aliquam
-            mauris elit, pharetra non tristique non, ullamcorper at lorem. Curabitur viverra elit at diam luctus
-            aliquam. Suspendisse nulla erat, efficitur ut dictum nec, vestibulum sodales quam. Donec sed lacus nec dolor
-            varius maximus sit amet ut nunc. Nunc blandit eros nec enim molestie porttitor. In posuere quam in dui
-            varius luctus. Vestibulum bibendum orci id tristique aliquam. Vivamus tempor, nibh quis sagittis feugiat,
-            ligula lectus tempus</p>
-        <p>ligula, sit amet tincidunt dui risus nec augue.Integer tristique vitae lorem ac cursus. Pellentesque id
-            mattis erat. Duis a malesuada libero. In nec scelerisque ex. Integer lectus orci, ultrices eget metus et,
-            egestas pharetra magna. Nullam sit amet magna a quam pulvinar lacinia. Ut at fringilla ante. Phasellus
-            pharetra molestie porta. Vivamus at ligula nunc. Vivamus mi mauris, pulvinar eget nulla ut, auctor fermentum
-            velit. Nam tincidunt tortor non malesuada sollicitudin. Nam eget est velit. Nulla tempus tellus et tortor
-            suscipit hendrerit. Praesent vitae tellus vitae augue ornare dictum consectetur eget eros. Mauris ut nunc
-            erat. Aenean vel odio vestibulum, porta nisl et, hendrerit turpis.</p>
+    <div class="form">
+        <h1 style="font-family: manrope;font-family: manrope;
+        width: 74%;
+        font-size: xxx-large;">CONTACT</h1>
+        <form action="">
+            <div style="display: flex; gap: 2rem;padding-bottom: 2rem;">
+                <input type="text" name="name" placeholder="Name*"
+                    style="height: 4rem;width: 22rem; font-family: manrope; font-size: x-large;border-color: transparent;">
+                <input type="email" id="name" placeholder="Email*"
+                    style="height: 4rem;width: 22rem;font-family: manrope;font-size: x-large;border-color: transparent;">
+            </div>
+            <textarea name="message" placeholder="Enter Your Message" style="font-family: manrope;width: 82rem;
+                height: 13rem;font-size: x-large;border-color: transparent;"></textarea><br>
+            <button class="btn">Submit</button>
+        </form>
     </div>
-    <div style="display: flex;justify-content: space-evenly;margin-top: 6rem;">
-        <img src="icon-model.png" alt class="icon">
-        <img src="icon-engine.png" alt class="icon">
-        <img src="icon-fuel.png" alt class="icon">
-        <img src="icon-road.png" alt class="icon">
-        <img src="icon-seat.png" alt class="icon">
+    <div class="mapouter">
+        <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no"
+                marginheight="0" marginwidth="0"
+                src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=kutchery road sialkot&amp;t=k&amp;z=18&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
+                href="https://strandsgame.net/">Strands Game</a></div>
     </div>
-    <div style=" display: flex;justify-content: space-evenly;">
-        <h2 class="style">MODEL</h2>
-        <h2 class="style">ENGINE</h2>
-        <h2 class="style">FUEL TYPE</h2>
-        <h2 class="style">MILEAGE</h2>
-        <h2 class="style">SEATS</h2>
-    </div>
-    <div style="    font-size: large;
-    margin-right: 6rem;
-    margin-left: 5rem;
-    justify-content: space-around;
-    display: flex;">
-        <h3 class="text">ZENCAR XS4</h3>
-        <h3 class="text">2100CC</h3>
-        <h3 class="text">HYBRID</h3>
-        <h3 class="text">10 MPL</h3>
-        <h3 class="text">5 SEATER</h3>
-    </div>
-    <div style="display: flex;justify-content: center; margin-top: 4em;
-    margin-bottom: 4em;">
-        <iframe width="1450" height="515" src="https://www.youtube.com/embed/GXwaQIZJkp8?si=A9MadiF72pWOkKXM"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
+    <footer style="margin-left: 4rem;
+    display: flex;
+    gap: 80rem;
+    align-items: baseline;">
+        <p style="font-family: manrope;">Copyright © 2024 ZENCAR. Template By LayoutFlow</p>
+        <span style="    gap: 1rem;
+        display: flex;">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </span>
+    </footer>
 </body>
 
 </html>
